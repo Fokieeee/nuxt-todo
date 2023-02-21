@@ -1,74 +1,53 @@
 <template>
-  <div>
-    <nav
-      class="navbar header is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <img src="~assets/buefy.png" alt="Buefy" height="28" />
-        </a>
-
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
+  <div class="hero is-fullheight has-background-light">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <p class="title">TODO list</p>
+        <div class="control">
+          <b-field>
+            <b-input
+              v-model="newTitle"
+              placeholder="Add new task"
+              :style="{ maxWidth: '500px' }"
+            ></b-input>
+          </b-field>
         </div>
-      </div>
-    </nav>
 
-    <section class="main-content columns">
-      <aside class="column is-2 section">
-        <p class="menu-label is-hidden-touch">General</p>
-        <ul class="menu-list">
-          <li v-for="(item, key) of items" :key="key">
-            <NuxtLink :to="item.to" exact-active-class="is-active">
-              <b-icon :icon="item.icon" /> {{ item.title }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </aside>
+        <b-button @click="addTask">Add</b-button>
+      </div>
+    </div>
 
-      <div class="container column is-10">
-        <Nuxt />
-      </div>
-    </section>
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Bulma</strong> by
-          <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
-          licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-          website content is licensed
-          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-            >CC BY NC SA 4.0</a
-          >.
-        </p>
-      </div>
-    </footer>
+    <Task
+      class="columns"
+      v-for="task in this.$store.state.tasks"
+      :key="task.id"
+      :task="task"
+    />
+
+    <Nuxt />
   </div>
 </template>
 
 <script>
 export default {
   name: "DefaultLayout",
+
   data() {
     return {
-      items: [
-        {
-          title: "Home",
-          icon: "home",
-          to: { name: "index" },
-        },
-        {
-          title: "Inspire",
-          icon: "lightbulb",
-          to: { name: "inspire" },
-        },
-      ],
+      newTitle: "",
     };
+  },
+  methods: {
+    addTask() {
+      if (this.newTitle) {
+        let id = new Date();
+        this.$store.commit("ADD_TASK", [this.newTitle, id.getTime()]);
+        this.newTitle = "";
+      }
+    },
+    toggleTask() {
+      this.$store.commit("TOGGLE_TASK", task.id);
+    },
   },
 };
 </script>
