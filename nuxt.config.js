@@ -5,6 +5,13 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "nuxt-todo",
+    // <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    script: [
+      {
+        src: "https://use.fontawesome.com/releases/v5.0.7/js/all.js",
+        body: true,
+      },
+    ],
     htmlAttrs: {
       lang: "en",
     },
