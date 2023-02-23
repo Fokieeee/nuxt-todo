@@ -1,27 +1,28 @@
 <template>
   <div>
     <b-notification
-      type="is-dark"
-      aria-close-label="Close notification"
+      type="is-light"
       @close="removeTask"
+      :style="{ border: '1px solid #d3d3d3' }"
     >
-      {{ task.title }}
-      <b-button size="is-small" @click="editTask">Edit</b-button>
+      <p>
+        {{ task.title }}
+      </p>
+      <div class="mt-2">
+        <b-field>
+          <b-button size="is-small" class="edit-btn" @click.prevent="editTask">
+            Edit
+          </b-button>
 
-      <b-field>
-        <b-checkbox @input="toggleTask"></b-checkbox>
-      </b-field>
+          <b-checkbox class="ml-2" @input="toggleTask"></b-checkbox>
+        </b-field>
+      </div>
     </b-notification>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      inputActive: false,
-    };
-  },
   computed: {
     toggleInput() {
       this.inputActive = !this.inputActive;
@@ -36,9 +37,16 @@ export default {
     toggleTask() {
       this.$store.commit("TOGGLE_TASK", this.task);
     },
-    editTask() {
-      this.$store.commit("EDIT_TASK", this.task);
+    editTask(task) {
+      this.$router.push("/" + task.id);
+      this.$store.commit("SET_TODO", task);
     },
   },
 };
 </script>
+
+<style scoped>
+.edit-btn a {
+  text-decoration: none !important;
+}
+</style>
