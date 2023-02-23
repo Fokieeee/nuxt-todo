@@ -2,10 +2,7 @@
   <div class="hero-body is-flex-direction-column">
     <b-field label="Edit TODO">
       <section>
-        <b-input maxlength="200" type="textarea" v-model="editTask"
-          >{{}}
-        </b-input>
-
+        <b-input maxlength="200" type="textarea" v-model="editTask"> </b-input>
         <NuxtLink v-show="editTask" to="/">Apply</NuxtLink>
       </section>
     </b-field>

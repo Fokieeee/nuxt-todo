@@ -6,13 +6,11 @@
       :style="{ border: '1px solid #d3d3d3' }"
     >
       <p>{{ task.title }}</p>
-
       <div class="mt-2">
         <b-field>
           <b-button size="is-small" class="edit-btn" @click.prevent="editTask">
             Edit
           </b-button>
-
           <b-checkbox class="ml-2" @input="toggleTask"></b-checkbox>
         </b-field>
       </div>
