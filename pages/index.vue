@@ -28,6 +28,7 @@ export default {
       newTitle: "",
     };
   },
+
   methods: {
     addTask() {
       if (this.newTitle) {
@@ -39,9 +40,6 @@ export default {
     toggleTask() {
       this.$store.commit("TOGGLE_TASK", task.id);
     },
-  },
-  async mounted() {
-    await this.$store.dispatch("fetch");
   },
 };
 </script>

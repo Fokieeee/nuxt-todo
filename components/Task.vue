@@ -5,9 +5,8 @@
       @close="removeTask"
       :style="{ border: '1px solid #d3d3d3' }"
     >
-      <p>
-        {{ task.title }}
-      </p>
+      <p>{{ task.title }}</p>
+
       <div class="mt-2">
         <b-field>
           <b-button size="is-small" class="edit-btn" @click.prevent="editTask">
@@ -23,11 +22,6 @@
 
 <script>
 export default {
-  computed: {
-    toggleInput() {
-      this.inputActive = !this.inputActive;
-    },
-  },
   name: "Task",
   props: ["task"],
   methods: {
@@ -37,9 +31,8 @@ export default {
     toggleTask() {
       this.$store.commit("TOGGLE_TASK", this.task);
     },
-    editTask(task) {
-      this.$router.push("/" + task.id);
-      this.$store.commit("SET_TODO", task);
+    editTask() {
+      this.$router.push(`/${this.task.id}`);
     },
   },
 };

@@ -2,14 +2,17 @@
   <div class="hero is-fullheight has-background-light">
     <div class="hero-head">
       <h1 class="title has-text-centered mt-6">TODO list</h1>
-      <Nuxt />
     </div>
+    <Nuxt />
   </div>
 </template>
 
 <script>
 export default {
   name: "DefaultLayout",
+  async mounted() {
+    await this.$store.dispatch("fetch");
+  },
 };
 </script>
 
