@@ -7,8 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "predeploy": "nuxt generate",
-    "deploy": "gh-pages -d dist"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -21,7 +20,6 @@
     "vue-template-compiler": "^2.7.10"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0",
     "push-dir": "^0.4.1"
   }
 }
